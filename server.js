@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 
 const AuthController = require('./controller /auth.controller');
-const DBConnection = require('./helper/dataBaseConnect')
+const CategoryController = require('./controller /catgory.controller');
+const DBConnection = require('./helper/dataBaseConnect');
+const catgoryController = require('./controller /catgory.controller');
 
 
 console.log(DBConnection.connectMongoAtlas());
@@ -29,7 +31,9 @@ app.get('/',(req, res)=>{
 app.post('/signup', AuthController.signup)
 app.post('/signin', AuthController.signin)
 
-
+//Category module routes 
+app.post('/categories', catgoryController.addNewCategory)
+app.get('/categories', catgoryController.getAllCategory)
 
 
 
