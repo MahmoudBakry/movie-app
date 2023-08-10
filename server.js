@@ -1,22 +1,37 @@
 const express = require('express'); 
+const mongoose = require('mongoose'); 
+const bodyParser = require('body-parser')
+
+const AuthController = require('./controller /auth.controller');
+const DBConnection = require('./helper/dataBaseConnect')
+
+
+console.log(DBConnection.connectMongoAtlas());
 let app = express(); 
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+
+
 
 app.get('/',(req, res)=>{
     res.send('Hello in my server')
 })
 
-app.get('/hello', (req, res)=>{
-res.status(200)
-res.json({
-    message : "Hello in our movie app", 
-    BE : "Mahmoud Bakry",
-    connect : {
-        email : "mahmoud.ae.bakry@gmail.com", 
-        phone : "01001072579"
-    }
-})
 
-})
+
+//Auth module routes
+app.post('/signup', AuthController.signup)
+
+
+
+
+
 app.listen(3000, ()=>{
     console.log('now i am workink for you,,,,,on port')
 })
+
