@@ -18,6 +18,7 @@ app.use(bodyParser.json())
 
 
 
+
 app.get('/',(req, res)=>{
     res.send('Hello in my server')
 })
@@ -26,6 +27,7 @@ app.get('/',(req, res)=>{
 
 //Auth module routes
 app.post('/signup', AuthController.signup)
+app.post('/signin', AuthController.signin)
 
 
 

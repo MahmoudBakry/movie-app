@@ -17,5 +17,16 @@ res.json(userDetails);
 },
 
 
+signin : async function(req, res){
+
+let user = await User.findOne({email : req.body.email, password :req.body.password}); 
+if (!user){
+
+   return res.status(401).json({message : "email or password is incorrect"})
+} 
+
+return res.json(user)
+}
+
 
 }
