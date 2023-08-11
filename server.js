@@ -6,6 +6,7 @@ const AuthController = require('./controller /auth.controller');
 const CategoryController = require('./controller /catgory.controller');
 const DBConnection = require('./helper/dataBaseConnect');
 const catgoryController = require('./controller /catgory.controller');
+const movieController = require('./controller /movies.controller')
 
 
 console.log(DBConnection.connectMongoAtlas());
@@ -34,6 +35,10 @@ app.post('/signin', AuthController.signin)
 //Category module routes 
 app.post('/categories', catgoryController.addNewCategory)
 app.get('/categories', catgoryController.getAllCategory)
+
+//Movies module routes 
+app.post('/movies', movieController.addNewMovie)
+app.get('/movies/:id', movieController.retriveOneMovie)
 
 
 
