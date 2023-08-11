@@ -18,7 +18,8 @@ const movieSchema = new mongoose.Schema({
         type : Number,
         default : 0
     }, 
-    image : String
+    image : String, 
+    video : String,
 })
 
 module.exports =  mongoose.model('movies', movieSchema)

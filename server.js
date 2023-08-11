@@ -38,7 +38,9 @@ app.get('/categories', catgoryController.getAllCategory)
 
 //Movies module routes 
 app.post('/movies', movieController.addNewMovie)
+app.get('/movies', movieController.retriveAllMovies)
 app.get('/movies/:id', movieController.retriveOneMovie)
+
 
 
 
