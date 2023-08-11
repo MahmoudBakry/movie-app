@@ -11,7 +11,7 @@ signup : async function(req, res){
         email : req.body.email 
     })
 let userDetails = await newUser.save();
-res.status(201); 
+res.status(200); 
 res.json(userDetails);
     
 },
