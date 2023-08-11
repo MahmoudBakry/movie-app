@@ -4,6 +4,16 @@ const User = require('../models/user.model');
 module.exports = {
 
 signup : async function(req, res){
+
+    if (!req.body.email) {
+        return res.status(400).json({"message" : "email is required"})
+    }
+
+    let emailValidation = await User.findOne({email : req.body.email}); 
+    if (emailValidation) {
+        return res.status(400).json({message: "email is exist before"})
+    }
+
     let newUser = new User({
         name : req.body.name, 
         age : req.body.age, 
