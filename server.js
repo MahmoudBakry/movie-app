@@ -41,6 +41,7 @@ app.put('/categories/:id', catgoryController.updateCategory)
 app.post('/movies', movieController.addNewMovie)
 app.get('/movies', movieController.retriveAllMovies)
 app.get('/movies/:id', movieController.retriveOneMovie)
+app.get('/categories/:id/movies', movieController.fetchByCategory)
 
 
 

@@ -1,4 +1,5 @@
 const Movie = require('../models/movie.model');
+const Category = require('../models/category.model')
 
 
 
@@ -29,5 +30,17 @@ module.exports = {
         let allDocs = await Movie.find()
         .populate('category')
         res.json(allDocs)
-    }
+    }, 
+
+    //fetch movies in specific categgory
+    fetchByCategory : async function(req, res){
+        let categoryDetails = await Category.findById(req.params.id);
+        if(!categoryDetails) {
+            return res.status(404).json();
+        }
+
+        let movies = await Movie.find({category : req.params.id})
+        .populate('category'); 
+        res.json(movies)
+    } 
 }
