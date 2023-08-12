@@ -35,6 +35,7 @@ app.post('/signin', AuthController.signin)
 //Category module routes 
 app.post('/categories', catgoryController.addNewCategory)
 app.get('/categories', catgoryController.getAllCategory)
+app.put('/categories/:id', catgoryController.updateCategory)
 
 //Movies module routes 
 app.post('/movies', movieController.addNewMovie)
