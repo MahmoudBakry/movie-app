@@ -9,7 +9,11 @@ const userSchema = new mongoose.Schema({
         unique : true 
     }, 
     password : String, 
-    age : Number
+    age : Number, 
+    favouriteMovies : [{
+        type : mongoose.Schema.Types.ObjectId, 
+        ref: 'movies'
+    }]
 })
 
 module.exports =  mongoose.model('users', userSchema)

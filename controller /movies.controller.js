@@ -1,5 +1,6 @@
 const Movie = require('../models/movie.model');
 const Category = require('../models/category.model')
+const User = require('../models/user.model')
 
 
 
@@ -42,5 +43,36 @@ module.exports = {
         let movies = await Movie.find({category : req.params.id})
         .populate('category'); 
         res.json(movies)
-    } 
+    }, 
+    
+    //add favourite movie 
+    addFavouritMovie : async function(req, res){
+
+        let userDetails = await User.findById(req.params.id); 
+        console.log("user : " + userDetails)
+
+        if(!userDetails){
+            return res.status(404).send(); 
+        }
+
+         if(userDetails.favouriteMovies.includes(req.body.movieId)){
+            console.log('in')
+            return res.status(400).json({error : "this movies in your favourit list already" })
+         } 
+
+         userDetails.favouriteMovies.push(req.body.movieId)
+        await userDetails.save()
+
+
+        let newUser =await User.findById(req.params.id)
+        .populate('favouriteMovies');
+
+        console.log('new user : ' + newUser )
+        return res.status(200).json(newUser);
+
+
+            
+        
+        
+    }
 }
