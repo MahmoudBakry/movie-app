@@ -69,10 +69,23 @@ module.exports = {
 
         console.log('new user : ' + newUser )
         return res.status(200).json(newUser);
-
-
-            
         
+    }, 
+    getFavouritList : async function(req, res){
+        let userDetails = await User.findById(req.params.id)
+        .populate({
+            path : 'favouriteMovies', 
+            populate: {
+                'path' : 'category', 
+                'model' : 'categories'
+            } 
         
+        })
+
+        if(!userDetails) {
+            return res.status(404).send();
+        }
+
+        return res.status(200).json(userDetails)
     }
 }

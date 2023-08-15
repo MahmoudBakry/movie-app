@@ -45,6 +45,7 @@ app.get('/categories/:id/movies', movieController.fetchByCategory)
 
 //favourite route 
 app.post('/users/:id/favourit', movieController.addFavouritMovie)
+app.get('/users/:id/favourit', movieController.getFavouritList)
 
 
 
